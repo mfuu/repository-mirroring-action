@@ -1,7 +1,5 @@
 # repository-mirroring-action
 
-[![Test](https://github.com/pixta-dev/repository-mirroring-action/actions/workflows/test.yml/badge.svg)](https://github.com/pixta-dev/repository-mirroring-action/actions/workflows/test.yml)
-
 A GitHub Action for mirroring a repository to another repository on GitHub, GitLab, BitBucket, AWS CodeCommit, etc.
 
 This will copy all commits, branches and tags.
@@ -27,10 +25,10 @@ jobs:
   to_gitlab:
     runs-on: ubuntu-latest
     steps:                                              # <-- must use actions/checkout before mirroring!
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
+      - uses: mfuu/repository-mirroring-action@v1
         with:
           target_repo_url:
             git@gitlab.com:<username>/<target_repository_name>.git
@@ -40,10 +38,10 @@ jobs:
   to_codecommit:                                        # <-- different jobs are executed in parallel.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
+      - uses: mfuu/repository-mirroring-action@v1
         with:
           target_repo_url:
             ssh://git-codecommit.<somewhere>.amazonaws.com/v1/repos/<target_repository_name>
